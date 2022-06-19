@@ -8,12 +8,12 @@ const UserNav = () => {
             <li className='nav-item'>
                 <Link to='/user/history' className='nav-link'>History</Link>
             </li>
-            <li className='nav-item'>
+            {/* <li className='nav-item'>
                 <Link to='/user/password'className='nav-link'>Update Password</Link>
             </li>
             <li className='nav-item'>
                 <Link to='/user/wishlist'className='nav-link'>Wishlist</Link>
-            </li>
+            </li> */}
         </ul>
       </nav>
 

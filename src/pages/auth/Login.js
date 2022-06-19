@@ -22,18 +22,29 @@ const Login = ({history}) => {
   
     const { user } = useSelector((state)=> ({...state}));
 
-    useEffect(()=>{
-      // if(user && user.token) {
-      //   history.push('/')
-      // }
-      console.log('useEffect ran login');
-  },[user]);
-  
+  //   useEffect(()=>{
+
+  //     let intended = history.location.state;
+  //     if(intended){
+  //       return;
+  //     }else if(user && user.token ){
+  //         history.push("/")
+  //       }
+  //     console.log('useEffect ran login');
+  // },[user,history]);
+
   function roleBasedRedirect(res){
-    if(res.data.role === 'admin'){
-      history.push('/admin/dashboard')
-    }else if(res.data.role === 'subscriber') {
-      history.push('/user/history');
+
+    // check if intended
+    let intended = history.location.state
+    if(intended){
+       history.push(intended.from) 
+    }else{
+      if(res.data.role === 'admin'){
+        history.push('/admin/products')
+      }else if(res.data.role === 'subscriber') {
+        history.push('/user/history');
+      }
     }
 }
 
@@ -134,6 +145,8 @@ const Login = ({history}) => {
     }
   return (
     <div className='container p-5' >
+      <p className='text-center'>plabdhe2000@gmail is the admin</p>
+        <p className='text-center'>password-12345678</p>
         <div className='row'>
             <div className='col-md-6 offset-md-3'>
                 {loading===false?(

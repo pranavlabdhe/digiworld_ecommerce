@@ -1,20 +1,22 @@
 import React from 'react';
 import { useState } from 'react';
-import {Menu} from 'antd'
-import { AppstoreOutlined, MailOutlined, SettingOutlined,LoginOutlined,UserAddOutlined,UserOutlined,LogoutOutlined } from '@ant-design/icons';
+import {Menu,Badge} from 'antd'
+import { AppstoreOutlined, MailOutlined, SettingOutlined,LoginOutlined,UserAddOutlined,UserOutlined,LogoutOutlined,ShoppingOutlined,ShoppingCartOutlined } from '@ant-design/icons';
 
 import firebase from "firebase/compat/app";
 import { useDispatch,useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
+import Search from '../forms/Search';
 import { useHistory } from 'react-router-dom';
 const { SubMenu,Item } = Menu
+
 
 
 const Header = ()=>{
     const [current,setCurrent] = useState('')
     let dispatch =useDispatch()
     let history =useHistory()
-    let { user } =useSelector((state)=> ({...state}));
+    let { user,cart } =useSelector((state)=> ({...state}));
     // let state =useSelector((state)=> state)//get user from state
     function handleClick(e){
         setCurrent(e.key)
@@ -36,6 +38,19 @@ const Header = ()=>{
         <Item key="home" icon={<AppstoreOutlined />}> 
         <Link to="/">Home</Link></Item>
 
+        <Item key="shop" icon={<ShoppingOutlined />}> 
+        <Link to="/shop">Shop</Link></Item>
+
+        <Item key="cart" icon={<ShoppingCartOutlined />}> 
+        <Link to="/cart">
+          <Badge count={cart.length} offset={[9,0]}>
+              Cart
+          </Badge> 
+        </Link>
+     
+      </Item>
+     
+     
         {!user && (
           <Item key="register" icon={<UserAddOutlined/>} className='float-end'>
           <Link to="/register">Register</Link>
@@ -55,7 +70,7 @@ const Header = ()=>{
                  </Item>)}
 
                  {user && user.role === 'admin' && (<Item key="two" icon={<AppstoreOutlined />}>
-                  <Link to="/admin/dashboard"> Dashboard</Link>
+                  <Link to="/admin/products"> Dashboard</Link>
                  </Item>)}
                
                  <Item icon={<LogoutOutlined />} onClick={logout}>
@@ -63,9 +78,12 @@ const Header = ()=>{
                  </Item>
                </SubMenu>
        )}
-
+       <span className='float-end'>
+          <Search />
+       </span>
+      
       </Menu>
-
+     
       </>
     )
 }
