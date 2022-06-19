@@ -1,10 +1,9 @@
-import React from 'react'
 import Jumbotron from '../components/cards/Jumbotron';
 import CategoryList from '../components/category/CategoryList';
 import BestSellers from '../components/home/BestSellers';
 import NewArrivals from '../components/home/NewArrivals';
 import SubList from '../components/sub/SubList';
-const Home = () => {
+const HomePage = () => {
   return (
     <>
       <div className='jumbotron mt-3 text-center display-5 font-weight-bold main_title p-5 '  >
@@ -26,4 +25,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage;

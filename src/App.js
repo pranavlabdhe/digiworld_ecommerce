@@ -44,7 +44,7 @@ import {LoadingOutlined} from '@ant-design/icons'
 
 const Login = lazy(()=>import("./pages/auth/Login"))
 const Register = lazy(()=>import("./pages/auth/Register"))  
-const Home= lazy(()=>import("./pages/Home"));
+const Home= lazy(()=>import("./pages/HomePage"));
 const Header=lazy(()=>import("./components/nav/Header")) ;
 
 const RegisterComplete = lazy(()=>import("./pages/auth/RegisterComplete")); 
